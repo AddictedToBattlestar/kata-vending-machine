@@ -1,0 +1,29 @@
+{
+  "name": "kata-vending-machine",
+  "version": "1.0.0",
+  "description": "## Overview This kata has been written in JavaScript using the revealing module pattern.  Opening the SpecRunner.html file in your browser should allow you to see the unit tests execute the underlying code to demonstrate its functionality.  Alternatively, if you have testem installed on your machine you can run testem from the root directory of this repo to see the same testing results.",
+  "main": "SpecRunner.html",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "testem",
+    "format": "prettier --write '**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AddictedToBattlestar/kata-vending-machine.git"
+  },
+  "author": "John Ryan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AddictedToBattlestar/kata-vending-machine/issues"
+  },
+  "homepage": "https://github.com/AddictedToBattlestar/kata-vending-machine#readme",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "prettier": "^1.12.1"
+  }
+}

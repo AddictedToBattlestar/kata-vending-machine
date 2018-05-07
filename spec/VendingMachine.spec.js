@@ -1,5 +1,5 @@
 describe('Vending machine', () => {
-    var subject;
+    var subject
 
     when('started', () => {
         beforeEach(() => {

@@ -20,5 +20,15 @@ describe('Vending machine', () => {
         expect(subject.getDisplay()).toEqual('$0.05');
       });
     });
+
+    when('a Dime is inserted', () => {
+      beforeEach(() => {
+        subject.insertCoin('Dime');
+      });
+
+      it('shows "$0.10" on the display', () => {
+        expect(subject.getDisplay()).toEqual('$0.10');
+      });
+    });
   });
 });

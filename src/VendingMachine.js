@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 const vendingMachine = () => {
   let display = 'INSERT COIN';
-  function insertCoin() {
-    display = '$0.05';
+  function insertCoin(coinInserted) {
+    display = coinInserted === 'Nickel' ? '$0.05' : '$0.10';
   }
   function getDisplay() {
     return display;

@@ -6,7 +6,7 @@ describe('Vending machine', () => {
       subject = vendingMachine();
     });
 
-    it('displays the message "INSERT COIN', () => {
+    it('displays the message "INSERT COIN"', () => {
       expect(subject.getDisplay()).toEqual('INSERT COIN');
     });
   });

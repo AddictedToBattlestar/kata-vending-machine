@@ -3,6 +3,7 @@ describe('Vending machine', () => {
 
   when('started', () => {
     beforeEach(() => {
+      // eslint-disable-next-line no-undef
       subject = vendingMachine();
     });
 

@@ -1,10 +1,10 @@
-var vendingMachine = (() => {
-  var display = 'INSERT COIN';
+let vendingMachine = () => {
+  const display = 'INSERT COIN';
 
   function getDisplay() {
     return display;
   }
   return {
-    getDisplay: getDisplay
+    getDisplay
   };
-});
+};

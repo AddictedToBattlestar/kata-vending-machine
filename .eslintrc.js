@@ -3,5 +3,8 @@ module.exports = {
   env: {
     jasmine: true
   },
+  rules: {
+    'comma-dangle': ['error', 'never']
+  },
   extends: 'airbnb-base'
 };

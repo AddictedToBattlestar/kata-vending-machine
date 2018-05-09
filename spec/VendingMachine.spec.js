@@ -10,5 +10,15 @@ describe('Vending machine', () => {
     it('displays the message "INSERT COIN"', () => {
       expect(subject.getDisplay()).toEqual('INSERT COIN');
     });
+
+    when('a Nickel is inserted', () => {
+      beforeEach(() => {
+        subject.insertCoin('Nickel');
+      });
+
+      it('shows "$0.05" on the display', () => {
+        expect(subject.getDisplay()).toEqual('$0.05');
+      });
+    });
   });
 });

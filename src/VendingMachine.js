@@ -1,4 +1,4 @@
-let vendingMachine = (() => {
+const vendingMachine = () => {
   const display = 'INSERT COIN';
 
   function getDisplay() {
@@ -7,4 +7,4 @@ let vendingMachine = (() => {
   return {
     getDisplay
   };
-});
+};

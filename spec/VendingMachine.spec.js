@@ -1,7 +1,7 @@
 describe('Vending machine', () => {
   let subject;
 
-  describe('started', () => {
+  when('started', () => {
     beforeEach(() => {
       subject = vendingMachine();
     });

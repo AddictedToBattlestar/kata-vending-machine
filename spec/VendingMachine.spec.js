@@ -7,7 +7,8 @@ describe('Vending machine', () => {
       mockCoinService = jasmine.createSpyObj('coinService', [
         'insertCoin',
         'getAmountInserted',
-        'getReturnedCoin'
+        'getReturnedCoin',
+        'processPurchase'
       ]);
       spyOn(nenaner.coinService, 'create').and.returnValue(mockCoinService);
       mockCoinService.getAmountInserted.and.returnValue(0);
@@ -71,6 +72,10 @@ describe('Vending machine', () => {
 
         it('dispenses a Cola', () => {
           expect(subject.getDispenser()).toEqual('Cola');
+        });
+
+        it('has reduced the amount inserted for the cost of the Cola', () => {
+          expect(mockCoinService.processPurchase).toHaveBeenCalledWith(1);
         });
 
         when('the display is checked a second time', () => {

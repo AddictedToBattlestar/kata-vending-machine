@@ -22,6 +22,7 @@ const vendingMachine = () => {
   function colaButtonPressed() {
     if (coinService.getAmountInserted() === 1) {
       temporaryMessage = 'THANK YOU';
+      coinService.processPurchase(1);
       dispenser = 'Cola';
     } else {
       temporaryMessage = 'PRICE $1.00';

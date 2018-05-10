@@ -32,11 +32,11 @@ describe('Vending machine integration/acceptance tests', () => {
       expect(subject.insertCoin('Penny'));
     });
 
-    xit('the machine displays INSERT COIN', () => {
+    it('the machine displays INSERT COIN', () => {
       expect(subject.getDisplay()).toEqual('INSERT COIN');
     });
 
-    xit('returns the invalid coin in the coin return', () => {
+    it('returns the invalid coin in the coin return', () => {
       expect(subject.getCoinReturn()).toEqual('Penny');
     });
   });

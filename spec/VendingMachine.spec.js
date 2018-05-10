@@ -4,15 +4,24 @@ describe('Vending machine', () => {
 
   when('started', () => {
     beforeEach(() => {
-      mockCoinService = jasmine.createSpyObj('coinService', ['insertCoin', 'getAmountInserted']);
+      mockCoinService = jasmine.createSpyObj('coinService', [
+        'insertCoin',
+        'getAmountInserted',
+        'getReturnedCoin'
+      ]);
       spyOn(nenaner.coinService, 'create').and.returnValue(mockCoinService);
       mockCoinService.getAmountInserted.and.returnValue(0);
+      mockCoinService.getReturnedCoin.and.returnValue('fake-returned-coin');
 
       subject = vendingMachine();
     });
 
     it('displays the message "INSERT COIN"', () => {
       expect(subject.getDisplay()).toEqual('INSERT COIN');
+    });
+
+    it('indirectly provides from the coinService coins that have been returned', () => {
+      expect(subject.getCoinReturn()).toEqual('fake-returned-coin');
     });
 
     when('coins are inserted', () => {

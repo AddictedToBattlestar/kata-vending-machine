@@ -12,6 +12,7 @@ const vendingMachine = () => {
 
   return {
     insertCoin: coinService.insertCoin,
-    getDisplay
+    getDisplay,
+    getCoinReturn: coinService.getReturnedCoin
   };
 };

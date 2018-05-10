@@ -18,7 +18,8 @@ nenaner.coinService = {
 
     return {
       insertCoin,
-      getAmountInserted
+      getAmountInserted,
+      getReturnedCoin: () => {}
     };
   }
 };

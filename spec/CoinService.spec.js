@@ -10,6 +10,10 @@ describe('Coin service', () => {
       expect(subject.getAmountInserted()).toEqual(0);
     });
 
+    it('has an empty coin return', () => {
+      expect(subject.getReturnedCoin()).not.toBeDefined();
+    });
+
     when('a Nickel is inserted', () => {
       beforeEach(() => {
         subject.insertCoin('Nickel');

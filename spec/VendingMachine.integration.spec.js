@@ -32,7 +32,7 @@ describe('Vending machine integration/acceptance tests', () => {
       expect(subject.insertCoin('Penny'));
     });
 
-    it('the machine displays INSERT COIN', () => {
+    it('the machine continues to display INSERT COIN', () => {
       expect(subject.getDisplay()).toEqual('INSERT COIN');
     });
 

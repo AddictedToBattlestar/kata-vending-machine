@@ -6,7 +6,7 @@ describe('Vending machine integration tests', () => {
       subject = vendingMachine();
     });
 
-    when('a bunch of coins are inserted', () => {
+    when('When a valid coins is inserted', () => {
       beforeEach(() => {
         subject.insertCoin('Nickel');
         subject.insertCoin('Nickel');
@@ -17,7 +17,7 @@ describe('Vending machine integration tests', () => {
         subject.insertCoin('Quarter');
       });
 
-      it('shows "$0.90" on the display', () => {
+      it('the amount of the coin will be added to the current amount and the display will be updated', () => {
         expect(subject.getDisplay()).toEqual('$0.90');
       });
     });

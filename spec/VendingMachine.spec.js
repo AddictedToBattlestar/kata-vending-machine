@@ -30,5 +30,15 @@ describe('Vending machine', () => {
         expect(subject.getDisplay()).toEqual('$0.10');
       });
     });
+
+    when('a Quarter is inserted', () => {
+      beforeEach(() => {
+        subject.insertCoin('Quarter');
+      });
+
+      it('shows "$0.25" on the display', () => {
+        expect(subject.getDisplay()).toEqual('$0.25');
+      });
+    });
   });
 });

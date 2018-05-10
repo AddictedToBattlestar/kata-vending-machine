@@ -72,6 +72,16 @@ describe('Vending machine', () => {
         it('dispenses a Cola', () => {
           expect(subject.getDispenser()).toEqual('Cola');
         });
+
+        when('the display is checked a second time', () => {
+          beforeEach(() => {
+            subject.getDisplay();
+          });
+
+          xit('displays the message "INSERT COIN"', () => {
+            expect(subject.getDisplay()).toEqual('INSERT COIN');
+          });
+        });
       });
     });
   });

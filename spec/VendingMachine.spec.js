@@ -58,6 +58,10 @@ describe('Vending machine', () => {
         it('displays the message "THANK YOU"', () => {
           expect(subject.getDisplay()).toEqual('THANK YOU');
         });
+
+        it('dispenses a Cola', () => {
+          expect(subject.getDispenser()).toEqual('Cola');
+        });
       });
     });
   });

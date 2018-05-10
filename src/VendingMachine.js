@@ -2,6 +2,7 @@
 const vendingMachine = () => {
   const coinService = nenaner.coinService.create();
   let temporaryMessage = '';
+  let dispenser;
 
   function getDisplayFormatForAmountInserted(amountInserted) {
     return `$${Number(amountInserted).toFixed(2)}`;
@@ -12,7 +13,15 @@ const vendingMachine = () => {
     return amountInserted === 0 ? 'INSERT COIN' : getDisplayFormatForAmountInserted(amountInserted);
   }
   function colaButtonPressed() {
-    temporaryMessage = coinService.getAmountInserted() === 1 ? 'THANK YOU' : 'PRICE $1.00';
+    if (coinService.getAmountInserted() === 1) {
+      temporaryMessage = 'THANK YOU';
+      dispenser = 'Cola';
+    } else {
+      temporaryMessage = 'PRICE $1.00';
+    }
+  }
+  function getDispenser() {
+    return dispenser;
   }
 
   return {
@@ -20,6 +29,6 @@ const vendingMachine = () => {
     getDisplay,
     getCoinReturn: coinService.getReturnedCoin,
     colaButtonPressed,
-    getDispenser: () => {}
+    getDispenser
   };
 };

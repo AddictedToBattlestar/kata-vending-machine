@@ -1,25 +1,43 @@
-describe('Vending machine integration tests', () => {
+describe('Vending machine integration/acceptance tests', () => {
   let subject;
 
-  when('started', () => {
+  beforeEach(() => {
+    subject = vendingMachine();
+  });
+
+  when('When a valid coins is inserted', () => {
     beforeEach(() => {
-      subject = vendingMachine();
+      subject.insertCoin('Nickel');
+      subject.insertCoin('Nickel');
+      subject.insertCoin('Dime');
+      subject.insertCoin('Dime');
+      subject.insertCoin('Dime');
+      subject.insertCoin('Quarter');
+      subject.insertCoin('Quarter');
     });
 
-    when('When a valid coins is inserted', () => {
-      beforeEach(() => {
-        subject.insertCoin('Nickel');
-        subject.insertCoin('Nickel');
-        subject.insertCoin('Dime');
-        subject.insertCoin('Dime');
-        subject.insertCoin('Dime');
-        subject.insertCoin('Quarter');
-        subject.insertCoin('Quarter');
-      });
+    it('the amount of the coin will be added to the current amount and the display will be updated', () => {
+      expect(subject.getDisplay()).toEqual('$0.90');
+    });
+  });
 
-      it('the amount of the coin will be added to the current amount and the display will be updated', () => {
-        expect(subject.getDisplay()).toEqual('$0.90');
-      });
+  when('When there are no coins inserted', () => {
+    it('the machine displays INSERT COIN', () => {
+      expect(subject.getDisplay()).toEqual('INSERT COIN');
+    });
+  });
+
+  when('When an invalid coin is inserted', () => {
+    beforeEach(() => {
+      expect(subject.insertCoin('Penny'));
+    });
+
+    xit('the machine displays INSERT COIN', () => {
+      expect(subject.getDisplay()).toEqual('INSERT COIN');
+    });
+
+    xit('returns the invalid coin in the coin return', () => {
+      expect(subject.getCoinReturn()).toEqual('Penny');
     });
   });
 });

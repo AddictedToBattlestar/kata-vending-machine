@@ -65,7 +65,7 @@ describe('Coin service', () => {
         expect(subject.insertCoin('Penny'));
       });
 
-      it('registers no change in the total amount inserted', () => {
+      it("doesn't change the total amount inserted", () => {
         expect(subject.getAmountInserted()).toEqual(0);
       });
 

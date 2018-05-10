@@ -1,24 +1,17 @@
 // eslint-disable-next-line no-unused-vars
 const vendingMachine = () => {
-  const coinValues = {
-    Nickel: 0.05,
-    Dime: 0.1,
-    Quarter: 0.25
-  };
-  let amountInserted = 0;
+  const coinService = nenaner.coinService.create();
 
-  function insertCoin(coinInserted) {
-    amountInserted += coinValues[coinInserted];
+  function getDisplayFormatForAmountInserted(amountInserted) {
+    return `$${Number(amountInserted).toFixed(2)}`;
   }
   function getDisplay() {
-    return amountInserted === 0 ? 'INSERT COIN' : getDisplayFormatForAmountInserted();
-  }
-  function getDisplayFormatForAmountInserted() {
-    return `$${Number(amountInserted).toFixed(2)}`;
+    const amountInserted = coinService.getAmountInserted();
+    return amountInserted === 0 ? 'INSERT COIN' : getDisplayFormatForAmountInserted(amountInserted);
   }
 
   return {
-    insertCoin,
+    insertCoin: coinService.insertCoin,
     getDisplay
   };
 };

@@ -47,6 +47,16 @@ describe('Vending machine', () => {
         it('displays the message "PRICE $1.00"', () => {
           expect(subject.getDisplay()).toEqual('PRICE $1.00');
         });
+
+        when('the display is checked a second time', () => {
+          beforeEach(() => {
+            subject.getDisplay();
+          });
+
+          it('displays the message "INSERT COIN"', () => {
+            expect(subject.getDisplay()).toEqual('INSERT COIN');
+          });
+        });
       });
 
       when('the button for cola is pressed and there are enought coins inserted', () => {

@@ -8,9 +8,16 @@ const vendingMachine = () => {
     return `$${Number(amountInserted).toFixed(2)}`;
   }
   function getDisplay() {
-    if (temporaryMessage) return temporaryMessage;
-    const amountInserted = coinService.getAmountInserted();
-    return amountInserted === 0 ? 'INSERT COIN' : getDisplayFormatForAmountInserted(amountInserted);
+    let messageToDisplay;
+    if (temporaryMessage) {
+      messageToDisplay = temporaryMessage;
+      temporaryMessage = '';
+    } else {
+      const amountInserted = coinService.getAmountInserted();
+      messageToDisplay =
+        amountInserted === 0 ? 'INSERT COIN' : getDisplayFormatForAmountInserted(amountInserted);
+    }
+    return messageToDisplay;
   }
   function colaButtonPressed() {
     if (coinService.getAmountInserted() === 1) {

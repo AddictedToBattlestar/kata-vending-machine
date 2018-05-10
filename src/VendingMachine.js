@@ -1,18 +1,22 @@
 // eslint-disable-next-line no-unused-vars
 const vendingMachine = () => {
-  let display = 'INSERT COIN';
   const coinValues = {
-    Nickel: '$0.05',
-    Dime: '$0.10',
-    Quarter: '$0.25'
+    Nickel: 0.05,
+    Dime: 0.1,
+    Quarter: 0.25
   };
+  let amountInserted = 0;
 
   function insertCoin(coinInserted) {
-    display = coinValues[coinInserted];
+    amountInserted += coinValues[coinInserted];
   }
   function getDisplay() {
-    return display;
+    return amountInserted === 0 ? 'INSERT COIN' : getDisplayFormatForAmountInserted();
   }
+  function getDisplayFormatForAmountInserted() {
+    return `$${Number(amountInserted).toFixed(2)}`;
+  }
+
   return {
     insertCoin,
     getDisplay

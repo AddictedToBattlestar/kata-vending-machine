@@ -40,5 +40,16 @@ describe('Vending machine', () => {
         expect(subject.getDisplay()).toEqual('$0.25');
       });
     });
+
+    when('two Nickels are inserted', () => {
+      beforeEach(() => {
+        subject.insertCoin('Nickel');
+        subject.insertCoin('Nickel');
+      });
+
+      it('shows "$0.10" on the display', () => {
+        expect(subject.getDisplay()).toEqual('$0.10');
+      });
+    });
   });
 });

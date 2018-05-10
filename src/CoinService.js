@@ -8,18 +8,23 @@ nenaner.coinService = {
       Quarter: 0.25
     };
     let amountInserted = 0;
+    let returnedCoin;
 
     function insertCoin(coinInserted) {
-      amountInserted += coinValues[coinInserted];
+      if (coinValues[coinInserted]) amountInserted += coinValues[coinInserted];
+      else returnedCoin = coinInserted;
     }
     function getAmountInserted() {
       return amountInserted;
+    }
+    function getReturnedCoin() {
+      return returnedCoin;
     }
 
     return {
       insertCoin,
       getAmountInserted,
-      getReturnedCoin: () => {}
+      getReturnedCoin
     };
   }
 };

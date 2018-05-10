@@ -59,5 +59,19 @@ describe('Coin service', () => {
         expect(subject.getAmountInserted()).toEqual(0.9);
       });
     });
+
+    when('When an invalid coin is inserted', () => {
+      beforeEach(() => {
+        expect(subject.insertCoin('Penny'));
+      });
+
+      it('registers no change in the total amount inserted', () => {
+        expect(subject.getAmountInserted()).toEqual(0);
+      });
+
+      it('returns the invalid coin in the coin return', () => {
+        expect(subject.getReturnedCoin()).toEqual('Penny');
+      });
+    });
   });
 });

@@ -20,6 +20,10 @@ describe('Vending machine', () => {
       expect(subject.getDisplay()).toEqual('INSERT COIN');
     });
 
+    it('has an empty dispenser', () => {
+      expect(subject.getDispenser()).not.toBeDefined();
+    });
+
     it('indirectly provides from the coinService coins that have been returned', () => {
       expect(subject.getCoinReturn()).toEqual('fake-returned-coin');
     });

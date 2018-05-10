@@ -19,6 +19,7 @@ const vendingMachine = () => {
     insertCoin: coinService.insertCoin,
     getDisplay,
     getCoinReturn: coinService.getReturnedCoin,
-    colaButtonPressed
+    colaButtonPressed,
+    getDispenser: () => {}
   };
 };

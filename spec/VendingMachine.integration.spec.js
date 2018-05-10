@@ -6,7 +6,7 @@ describe('Vending machine integration/acceptance tests', () => {
   });
 
   describe('Accept Coins testing', () => {
-    when('When a valid coins is inserted', () => {
+    when('a valid coin is inserted', () => {
       beforeEach(() => {
         subject.insertCoin('Nickel');
         subject.insertCoin('Nickel');
@@ -22,13 +22,13 @@ describe('Vending machine integration/acceptance tests', () => {
       });
     });
 
-    when('When there are no coins inserted', () => {
+    when('there are no coins inserted', () => {
       it('the machine displays INSERT COIN', () => {
         expect(subject.getDisplay()).toEqual('INSERT COIN');
       });
     });
 
-    when('When an invalid coin is inserted', () => {
+    when('an invalid coin is inserted', () => {
       beforeEach(() => {
         expect(subject.insertCoin('Penny'));
       });

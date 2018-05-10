@@ -1,7 +1,7 @@
 describe('Coin service', () => {
   let subject;
 
-  describe('started', () => {
+  when('started', () => {
     beforeEach(() => {
       subject = nenaner.coinService.create();
     });

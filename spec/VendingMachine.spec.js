@@ -34,13 +34,26 @@ describe('Vending machine', () => {
       });
     });
 
-    when('the button for cola is pressed', () => {
-      beforeEach(() => {
-        subject.colaButtonPressed();
+    describe('select product testing', () => {
+      when('the button for cola is pressed', () => {
+        beforeEach(() => {
+          subject.colaButtonPressed();
+        });
+
+        it('displays the message "PRICE $1.00"', () => {
+          expect(subject.getDisplay()).toEqual('PRICE $1.00');
+        });
       });
 
-      it('displays the message "PRICE $1.00"', () => {
-        expect(subject.getDisplay()).toEqual('PRICE $1.00');
+      when('the button for cola is pressed and there are enought coins inserted', () => {
+        beforeEach(() => {
+          mockCoinService.getAmountInserted.and.returnValue(1);
+          subject.colaButtonPressed();
+        });
+
+        it('displays the message "THANK YOU"', () => {
+          expect(subject.getDisplay()).toEqual('THANK YOU');
+        });
       });
     });
   });

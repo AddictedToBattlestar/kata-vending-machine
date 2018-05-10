@@ -12,7 +12,7 @@ const vendingMachine = () => {
     return amountInserted === 0 ? 'INSERT COIN' : getDisplayFormatForAmountInserted(amountInserted);
   }
   function colaButtonPressed() {
-    temporaryMessage = 'PRICE $1.00';
+    temporaryMessage = coinService.getAmountInserted() === 1 ? 'THANK YOU' : 'PRICE $1.00';
   }
 
   return {

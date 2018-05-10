@@ -1,14 +1,37 @@
 describe('Vending machine', () => {
   let subject;
+  let mockCoinService;
 
   when('started', () => {
     beforeEach(() => {
-      // eslint-disable-next-line no-undef
+      mockCoinService = jasmine.createSpyObj('coinService', [
+        'insertCoin',
+        'getAmountInserted',
+        'getReturnedCoin'
+      ]);
+      spyOn(nenaner.coinService, 'create').and.returnValue(mockCoinService);
+      mockCoinService.getAmountInserted.and.returnValue(0);
+      mockCoinService.getReturnedCoin.and.returnValue('fake-returned-coin');
+
       subject = vendingMachine();
     });
 
     it('displays the message "INSERT COIN"', () => {
       expect(subject.getDisplay()).toEqual('INSERT COIN');
+    });
+
+    it('indirectly provides from the coinService coins that have been returned', () => {
+      expect(subject.getCoinReturn()).toEqual('fake-returned-coin');
+    });
+
+    when('coins are inserted', () => {
+      beforeEach(() => {
+        mockCoinService.getAmountInserted.and.returnValue(1.5);
+      });
+
+      it('displays the amount with a dollar sign and 2 decimal places', () => {
+        expect(subject.getDisplay()).toEqual('$1.50');
+      });
     });
   });
 });

@@ -3,7 +3,6 @@ describe('Vending machine', () => {
 
   when('started', () => {
     beforeEach(() => {
-      // eslint-disable-next-line no-undef
       subject = vendingMachine();
     });
 
@@ -41,14 +40,19 @@ describe('Vending machine', () => {
       });
     });
 
-    when('two Nickels are inserted', () => {
+    when('a bunch of coins are inserted', () => {
       beforeEach(() => {
         subject.insertCoin('Nickel');
         subject.insertCoin('Nickel');
+        subject.insertCoin('Dime');
+        subject.insertCoin('Dime');
+        subject.insertCoin('Dime');
+        subject.insertCoin('Quarter');
+        subject.insertCoin('Quarter');
       });
 
-      it('shows "$0.10" on the display', () => {
-        expect(subject.getDisplay()).toEqual('$0.10');
+      it('shows "$0.90" on the display', () => {
+        expect(subject.getDisplay()).toEqual('$0.90');
       });
     });
   });

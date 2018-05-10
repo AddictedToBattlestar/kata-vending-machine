@@ -33,5 +33,15 @@ describe('Vending machine', () => {
         expect(subject.getDisplay()).toEqual('$1.50');
       });
     });
+
+    when('the button for cola is pressed', () => {
+      beforeEach(() => {
+        subject.colaButtonPressed();
+      });
+
+      it('displays the message "PRICE $1.00"', () => {
+        expect(subject.getDisplay()).toEqual('PRICE $1.00');
+      });
+    });
   });
 });

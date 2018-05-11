@@ -21,13 +21,17 @@ const vendingMachine = () => {
     return messageToDisplay;
   }
 
+  function setTemporaryMessage(desiredTemporaryMessage) {
+    temporaryMessage = desiredTemporaryMessage;
+  }
+
   function colaButtonPressed() {
     if (coinService.getAmountInserted() >= 1) {
-      temporaryMessage = 'THANK YOU';
+      setTemporaryMessage('THANK YOU');
       coinService.processPurchase(1);
       dispenser = 'Cola';
     } else {
-      temporaryMessage = 'PRICE $1.00';
+      setTemporaryMessage('PRICE $1.00');
     }
   }
 

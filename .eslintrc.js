@@ -12,7 +12,8 @@ module.exports = {
   rules: {
     'comma-dangle': ['error', 'never'],
     'no-use-before-define': 'warn',
-    'no-undef': 'warn'
+    'no-undef': 'warn',
+    'arrow-parens': 'off'
   },
   extends: 'airbnb-base'
 };

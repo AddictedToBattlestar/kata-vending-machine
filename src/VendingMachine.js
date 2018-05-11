@@ -7,6 +7,7 @@ const vendingMachine = () => {
   function getDisplayFormatForAmountInserted(amountInserted) {
     return `$${Number(amountInserted).toFixed(2)}`;
   }
+
   function getDisplay() {
     let messageToDisplay;
     if (temporaryMessage) {
@@ -19,6 +20,7 @@ const vendingMachine = () => {
     }
     return messageToDisplay;
   }
+
   function colaButtonPressed() {
     if (coinService.getAmountInserted() >= 1) {
       temporaryMessage = 'THANK YOU';
@@ -28,6 +30,7 @@ const vendingMachine = () => {
       temporaryMessage = 'PRICE $1.00';
     }
   }
+
   function getDispenser() {
     return dispenser;
   }

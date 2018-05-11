@@ -28,7 +28,7 @@ describe('Vending machine', () => {
     });
 
     describe('select product testing', () => {
-      when('the button for cola is pressed', () => {
+      when('the button for Cola is pressed', () => {
         beforeEach(() => {
           subject.colaButtonPressed();
         });
@@ -38,7 +38,17 @@ describe('Vending machine', () => {
         });
       });
 
-      when('the button for cola is pressed and there are enough coins inserted', () => {
+      when('the button for chips is pressed', () => {
+        beforeEach(() => {
+          subject.chipsButtonPressed();
+        });
+
+        it('displays the temporary message "PRICE $0.50"', () => {
+          expect(mockDisplayService.setTemporaryMessage).toHaveBeenCalledWith('PRICE $0.50');
+        });
+      });
+
+      when('the button for Cola is pressed and there are enough coins inserted', () => {
         beforeEach(() => {
           mockCoinService.getAmountInserted.and.returnValue(1);
           subject.colaButtonPressed();
@@ -57,7 +67,7 @@ describe('Vending machine', () => {
         });
       });
 
-      when('the button for cola is pressed and there are too many coins inserted', () => {
+      when('the button for Cola is pressed and there are too many coins inserted', () => {
         beforeEach(() => {
           mockCoinService.getAmountInserted.and.returnValue(1.25);
           subject.colaButtonPressed();

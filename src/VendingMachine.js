@@ -3,32 +3,14 @@ var nenaner = nenaner || {};
 nenaner.vendingMachine = () => {
   const coinService = nenaner.coinService.create();
   const displayService = nenaner.displayService.create(coinService.getAmountInserted);
-  let dispenser;
-  const productValues = {
-    Cola: 1,
-    Chips: 0.5
-  };
+  const productService = nenaner.productService.create(coinService, displayService);
 
   function colaButtonPressed() {
-    productPurchaseRequest('Cola');
+    productService.productPurchaseRequest('Cola');
   }
 
   function chipsButtonPressed() {
-    productPurchaseRequest('Chips');
-  }
-
-  function productPurchaseRequest(productName) {
-    if (coinService.getAmountInserted() >= productValues[productName]) {
-      displayService.setTemporaryMessage('THANK YOU');
-      coinService.processPurchase(productValues[productName]);
-      dispenser = productName;
-    } else {
-      displayService.setTemporaryMessage(productName === 'Cola' ? 'PRICE $1.00' : 'PRICE $0.50');
-    }
-  }
-
-  function getDispenser() {
-    return dispenser;
+    productService.productPurchaseRequest('Chips');
   }
 
   return {
@@ -37,6 +19,6 @@ nenaner.vendingMachine = () => {
     getCoinReturn: coinService.getReturnedCoin,
     colaButtonPressed,
     chipsButtonPressed,
-    getDispenser
+    getDispenser: productService.getDispenser
   };
 };

@@ -67,6 +67,25 @@ describe('Vending machine', () => {
         });
       });
 
+      when('the button for Chips is pressed and there are enough coins inserted', () => {
+        beforeEach(() => {
+          mockCoinService.getAmountInserted.and.returnValue(1);
+          subject.chipsButtonPressed();
+        });
+
+        it('displays the temporary message "THANK YOU"', () => {
+          expect(mockDisplayService.setTemporaryMessage).toHaveBeenCalledWith('THANK YOU');
+        });
+
+        it('dispenses a Chips', () => {
+          expect(subject.getDispenser()).toEqual('Chips');
+        });
+
+        it('has reduced the amount inserted for the cost of the Cola', () => {
+          expect(mockCoinService.processPurchase).toHaveBeenCalledWith(0.5);
+        });
+      });
+
       when('the button for Cola is pressed and there are too many coins inserted', () => {
         beforeEach(() => {
           mockCoinService.getAmountInserted.and.returnValue(1.25);

@@ -20,7 +20,7 @@ nenaner.vendingMachine = () => {
   function productPurchaseRequest(productName) {
     if (coinService.getAmountInserted() >= productValues[productName]) {
       displayService.setTemporaryMessage('THANK YOU');
-      coinService.processPurchase(1);
+      coinService.processPurchase(productValues[productName]);
       dispenser = productName;
     } else {
       displayService.setTemporaryMessage(productName === 'Cola' ? 'PRICE $1.00' : 'PRICE $0.50');

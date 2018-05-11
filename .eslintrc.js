@@ -5,7 +5,9 @@ module.exports = {
   },
   globals: {
     when: true,
-    and: true
+    and: true,
+    nenaner: true,
+    vendingMachine: true
   },
   rules: {
     'comma-dangle': ['error', 'never'],

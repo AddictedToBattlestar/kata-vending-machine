@@ -60,7 +60,7 @@ describe('Vending machine', () => {
         });
       });
 
-      when('the button for cola is pressed and there are enought coins inserted', () => {
+      when('the button for cola is pressed and there are enough coins inserted', () => {
         beforeEach(() => {
           mockCoinService.getAmountInserted.and.returnValue(1);
           subject.colaButtonPressed();
@@ -77,15 +77,24 @@ describe('Vending machine', () => {
         it('has reduced the amount inserted for the cost of the Cola', () => {
           expect(mockCoinService.processPurchase).toHaveBeenCalledWith(1);
         });
+      });
 
-        when('the display is checked a second time', () => {
-          beforeEach(() => {
-            subject.getDisplay();
-          });
+      when('the button for cola is pressed and there are too many coins inserted', () => {
+        beforeEach(() => {
+          mockCoinService.getAmountInserted.and.returnValue(1.25);
+          subject.colaButtonPressed();
+        });
 
-          xit('displays the message "INSERT COIN"', () => {
-            expect(subject.getDisplay()).toEqual('INSERT COIN');
-          });
+        it('displays the message "THANK YOU"', () => {
+          expect(subject.getDisplay()).toEqual('THANK YOU');
+        });
+
+        it('dispenses a Cola', () => {
+          expect(subject.getDispenser()).toEqual('Cola');
+        });
+
+        it('has reduced the amount inserted for the cost of the Cola', () => {
+          expect(mockCoinService.processPurchase).toHaveBeenCalledWith(1);
         });
       });
     });

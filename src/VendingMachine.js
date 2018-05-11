@@ -1,5 +1,6 @@
-// eslint-disable-next-line no-unused-vars
-const vendingMachine = () => {
+// eslint-disable-next-line no-var
+var nenaner = nenaner || {};
+nenaner.vendingMachine = () => {
   const coinService = nenaner.coinService.create();
   const displayService = nenaner.displayService.create(coinService.getAmountInserted);
   let dispenser;

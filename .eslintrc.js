@@ -13,7 +13,8 @@ module.exports = {
     'comma-dangle': ['error', 'never'],
     'no-use-before-define': 'warn',
     'no-undef': 'warn',
-    'arrow-parens': 'off'
+    'arrow-parens': 'off',
+    'no-use-before-define': 'off'
   },
   extends: 'airbnb-base'
 };

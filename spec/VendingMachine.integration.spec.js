@@ -2,7 +2,7 @@ describe('Vending machine integration/acceptance tests', () => {
   let subject;
 
   beforeEach(() => {
-    subject = vendingMachine();
+    subject = nenaner.vendingMachine();
   });
 
   describe('Accept Coins testing', () => {

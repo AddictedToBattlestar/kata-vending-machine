@@ -1,24 +1,18 @@
 describe('Vending machine', () => {
   let subject;
   let mockCoinService;
+  let mockDisplayService;
 
   when('started', () => {
     beforeEach(() => {
-      mockCoinService = jasmine.createSpyObj('coinService', [
-        'insertCoin',
-        'getAmountInserted',
-        'getReturnedCoin',
-        'processPurchase'
-      ]);
-      spyOn(nenaner.coinService, 'create').and.returnValue(mockCoinService);
+      setupMocksForTheCoinService();
       mockCoinService.getAmountInserted.and.returnValue(0);
       mockCoinService.getReturnedCoin.and.returnValue('fake-returned-coin');
 
-      subject = vendingMachine();
-    });
+      setupMocksForTheDisplayService();
+      mockDisplayService.getDisplay.and.returnValue('fake-display-message');
 
-    it('displays the message "INSERT COIN"', () => {
-      expect(subject.getDisplay()).toEqual('INSERT COIN');
+      subject = nenaner.vendingMachine();
     });
 
     it('has an empty dispenser', () => {
@@ -29,14 +23,8 @@ describe('Vending machine', () => {
       expect(subject.getCoinReturn()).toEqual('fake-returned-coin');
     });
 
-    when('coins are inserted', () => {
-      beforeEach(() => {
-        mockCoinService.getAmountInserted.and.returnValue(1.5);
-      });
-
-      it('displays the amount with a dollar sign and 2 decimal places', () => {
-        expect(subject.getDisplay()).toEqual('$1.50');
-      });
+    it('has setup the display to feed from from the displayService', () => {
+      expect(subject.getDisplay()).toEqual('fake-display-message');
     });
 
     describe('select product testing', () => {
@@ -45,18 +33,8 @@ describe('Vending machine', () => {
           subject.colaButtonPressed();
         });
 
-        it('displays the message "PRICE $1.00"', () => {
-          expect(subject.getDisplay()).toEqual('PRICE $1.00');
-        });
-
-        when('the display is checked a second time', () => {
-          beforeEach(() => {
-            subject.getDisplay();
-          });
-
-          it('displays the message "INSERT COIN"', () => {
-            expect(subject.getDisplay()).toEqual('INSERT COIN');
-          });
+        it('displays the temporary message "PRICE $1.00"', () => {
+          expect(mockDisplayService.setTemporaryMessage).toHaveBeenCalledWith('PRICE $1.00');
         });
       });
 
@@ -66,8 +44,8 @@ describe('Vending machine', () => {
           subject.colaButtonPressed();
         });
 
-        it('displays the message "THANK YOU"', () => {
-          expect(subject.getDisplay()).toEqual('THANK YOU');
+        it('displays the temporary message "THANK YOU"', () => {
+          expect(mockDisplayService.setTemporaryMessage).toHaveBeenCalledWith('THANK YOU');
         });
 
         it('dispenses a Cola', () => {
@@ -85,8 +63,8 @@ describe('Vending machine', () => {
           subject.colaButtonPressed();
         });
 
-        it('displays the message "THANK YOU"', () => {
-          expect(subject.getDisplay()).toEqual('THANK YOU');
+        it('displays the temporary message "THANK YOU"', () => {
+          expect(mockDisplayService.setTemporaryMessage).toHaveBeenCalledWith('THANK YOU');
         });
 
         it('dispenses a Cola', () => {
@@ -99,4 +77,22 @@ describe('Vending machine', () => {
       });
     });
   });
+
+  function setupMocksForTheCoinService() {
+    mockCoinService = jasmine.createSpyObj('coinService', [
+      'insertCoin',
+      'getAmountInserted',
+      'getReturnedCoin',
+      'processPurchase'
+    ]);
+    spyOn(nenaner.coinService, 'create').and.returnValue(mockCoinService);
+  }
+
+  function setupMocksForTheDisplayService() {
+    mockDisplayService = jasmine.createSpyObj('displayService', [
+      'getDisplay',
+      'setTemporaryMessage'
+    ]);
+    spyOn(nenaner.displayService, 'create').and.returnValue(mockDisplayService);
+  }
 });

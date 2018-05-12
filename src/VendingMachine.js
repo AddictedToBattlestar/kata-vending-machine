@@ -1,18 +1,29 @@
-// eslint-disable-next-line no-unused-vars
-const vendingMachine = () => {
+// eslint-disable-next-line no-var
+var nenaner = nenaner || {};
+nenaner.vendingMachine = () => {
   const coinService = nenaner.coinService.create();
+  const displayService = nenaner.displayService.create(coinService.getAmountInserted);
+  const productService = nenaner.productService.create(coinService, displayService);
 
-  function getDisplayFormatForAmountInserted(amountInserted) {
-    return `$${Number(amountInserted).toFixed(2)}`;
+  function colaButtonPressed() {
+    productService.productPurchaseRequest('Cola');
   }
-  function getDisplay() {
-    const amountInserted = coinService.getAmountInserted();
-    return amountInserted === 0 ? 'INSERT COIN' : getDisplayFormatForAmountInserted(amountInserted);
+
+  function chipsButtonPressed() {
+    productService.productPurchaseRequest('Chips');
+  }
+
+  function candyButtonPressed() {
+    productService.productPurchaseRequest('Candy');
   }
 
   return {
     insertCoin: coinService.insertCoin,
-    getDisplay,
-    getCoinReturn: coinService.getReturnedCoin
+    getDisplay: displayService.getDisplay,
+    getCoinReturn: coinService.getReturnedCoin,
+    colaButtonPressed,
+    chipsButtonPressed,
+    candyButtonPressed,
+    getDispenser: productService.getDispenser
   };
 };

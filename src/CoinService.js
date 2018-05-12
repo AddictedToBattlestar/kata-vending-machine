@@ -3,9 +3,9 @@ var nenaner = nenaner || {};
 nenaner.coinService = {
   create: () => {
     const coinValues = {
-      Nickel: 0.05,
-      Dime: 0.1,
-      Quarter: 0.25
+      Nickel: 5,
+      Dime: 10,
+      Quarter: 25
     };
     let amountInserted = 0;
     let returnedCoin;
@@ -15,16 +15,20 @@ nenaner.coinService = {
       else returnedCoin = coinInserted;
     }
     function getAmountInserted() {
-      return amountInserted;
+      return amountInserted / 100;
     }
     function getReturnedCoin() {
       return returnedCoin;
+    }
+    function processPurchase(purchaseAmount) {
+      amountInserted -= purchaseAmount * 100;
     }
 
     return {
       insertCoin,
       getAmountInserted,
-      getReturnedCoin
+      getReturnedCoin,
+      processPurchase
     };
   }
 };

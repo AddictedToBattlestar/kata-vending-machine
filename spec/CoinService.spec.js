@@ -1,7 +1,7 @@
 describe('Coin service', () => {
   let subject;
 
-  when('started', () => {
+  when('created', () => {
     beforeEach(() => {
       subject = nenaner.coinService.create();
     });
@@ -60,7 +60,7 @@ describe('Coin service', () => {
       });
     });
 
-    when('When an invalid coin is inserted', () => {
+    when('an invalid coin is inserted', () => {
       beforeEach(() => {
         expect(subject.insertCoin('Penny'));
       });
@@ -71,6 +71,20 @@ describe('Coin service', () => {
 
       it('returns the invalid coin in the coin return', () => {
         expect(subject.getReturnedCoin()).toEqual('Penny');
+      });
+    });
+
+    when('a purchase of 0.25 is made where 0.35 is inserted', () => {
+      // I interestingly had to adjust how the total amount was stored to whole numbers
+      // to avoid issues here (Expected 0.09999999999999998 to equal 0.1)
+      beforeEach(() => {
+        subject.insertCoin('Dime');
+        subject.insertCoin('Quarter');
+        subject.processPurchase(0.25);
+      });
+
+      it('adjusts the amount inserted to 0.1', () => {
+        expect(subject.getAmountInserted()).toEqual(0.1);
       });
     });
   });

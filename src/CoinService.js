@@ -26,11 +26,20 @@ nenaner.coinService = {
     }
 
     function returnAmountInserted() {
-      for (let x = 0; x < Math.floor(amountInserted / 10); x++) {
-        returnedCoins.push('Dime');
+      const numberOfQuartersToReturn = Math.floor(amountInserted / 25);
+      for (let x = 0; x < numberOfQuartersToReturn; x++) {
+        returnedCoins.push('Quarter');
+        amountInserted -= 25;
       }
-      if (amountInserted % 10 === 5) returnedCoins.push('Nickel');
-      amountInserted = 0;
+      const numberOfDimesToReturn = Math.floor(amountInserted / 10);
+      for (let x = 0; x < numberOfDimesToReturn; x++) {
+        returnedCoins.push('Dime');
+        amountInserted -= 10;
+      }
+      if (amountInserted % 10 === 5) {
+        returnedCoins.push('Nickel');
+        amountInserted -= 5;
+      }
     }
 
     return {

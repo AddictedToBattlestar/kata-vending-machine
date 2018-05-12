@@ -137,7 +137,7 @@ describe('Coin service', () => {
         subject.processPurchase(0.5);
       });
 
-      xit('places two Dimes in the coin return', () => {
+      it('places two Dimes in the coin return', () => {
         expect(subject.getReturnedCoin()).toEqual([
           'Quarter',
           'Quarter',
@@ -145,10 +145,10 @@ describe('Coin service', () => {
           'Dime',
           'Nickel'
         ]);
+      });
 
-        xit('resets the amount inserted back to 0', () => {
-          expect(subject.getAmountInserted()).toEqual(0);
-        });
+      it('resets the amount inserted back to 0', () => {
+        expect(subject.getAmountInserted()).toEqual(0);
       });
     });
   });

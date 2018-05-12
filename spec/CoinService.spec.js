@@ -75,8 +75,6 @@ describe('Coin service', () => {
     });
 
     when('a purchase of 0.25 is made where 0.35 is inserted', () => {
-      // I interestingly had to adjust how the total amount was stored to whole numbers
-      // to avoid issues here (Expected 0.09999999999999998 to equal 0.1)
       beforeEach(() => {
         subject.insertCoin('Dime');
         subject.insertCoin('Quarter');
@@ -85,6 +83,18 @@ describe('Coin service', () => {
 
       it('places the remaining amount in the coind return', () => {
         expect(subject.getReturnedCoin()).toEqual('Dime');
+      });
+    });
+
+    when('a purchase of 0.30 is made where 0.35 is inserted', () => {
+      beforeEach(() => {
+        subject.insertCoin('Dime');
+        subject.insertCoin('Quarter');
+        subject.processPurchase(0.3);
+      });
+
+      it('places the remaining amount in the coind return', () => {
+        expect(subject.getReturnedCoin()).toEqual('Nickel');
       });
     });
   });

@@ -22,7 +22,11 @@ nenaner.coinService = {
     }
     function processPurchase(purchaseAmount) {
       amountInserted -= purchaseAmount * 100;
-      if (amountInserted >= 0) returnedCoin = 'Dime';
+      if (amountInserted >= 0) returnAmountInserted();
+    }
+
+    function returnAmountInserted() {
+      returnedCoin = amountInserted === 10 ? 'Dime' : 'Nickel';
     }
 
     return {

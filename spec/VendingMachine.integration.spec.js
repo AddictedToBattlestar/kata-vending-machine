@@ -98,5 +98,19 @@ describe('Vending machine integration/acceptance tests', () => {
         });
       });
     });
+
+    when('the Candy button is selected with no money inserted', () => {
+      beforeEach(() => {
+        subject.candyButtonPressed();
+      });
+
+      it('has an empty dispenser', () => {
+        expect(subject.getDispenser()).not.toBeDefined();
+      });
+
+      it('displays the message "PRICE $0.65"', () => {
+        expect(subject.getDisplay()).toEqual('PRICE $0.65');
+      });
+    });
   });
 });

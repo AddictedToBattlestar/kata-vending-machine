@@ -25,13 +25,23 @@ describe('Product service', () => {
       });
     });
 
-    when('the button for chips is pressed', () => {
+    when('the button for Chips is pressed', () => {
       beforeEach(() => {
         subject.productPurchaseRequest('Chips');
       });
 
       it('displays the temporary message "PRICE $0.50"', () => {
         expect(mockDisplayService.setTemporaryPriceMessage).toHaveBeenCalledWith(0.5);
+      });
+    });
+
+    when('the button for Candy is pressed', () => {
+      beforeEach(() => {
+        subject.productPurchaseRequest('Candy');
+      });
+
+      it('displays the temporary message "PRICE $0.65"', () => {
+        expect(mockDisplayService.setTemporaryPriceMessage).toHaveBeenCalledWith(0.65);
       });
     });
 

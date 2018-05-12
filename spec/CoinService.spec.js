@@ -60,7 +60,7 @@ describe('Coin service', () => {
       });
     });
 
-    when('When an invalid coin is inserted', () => {
+    when('an invalid coin is inserted', () => {
       beforeEach(() => {
         expect(subject.insertCoin('Penny'));
       });

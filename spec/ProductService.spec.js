@@ -21,7 +21,7 @@ describe('Product service', () => {
       });
 
       it('displays the temporary message "PRICE $1.00"', () => {
-        expect(mockDisplayService.setTemporaryMessage).toHaveBeenCalledWith('PRICE $1.00');
+        expect(mockDisplayService.setTemporaryPriceMessage).toHaveBeenCalledWith(1);
       });
     });
 
@@ -31,7 +31,7 @@ describe('Product service', () => {
       });
 
       it('displays the temporary message "PRICE $0.50"', () => {
-        expect(mockDisplayService.setTemporaryMessage).toHaveBeenCalledWith('PRICE $0.50');
+        expect(mockDisplayService.setTemporaryPriceMessage).toHaveBeenCalledWith(0.5);
       });
     });
 
@@ -106,7 +106,8 @@ describe('Product service', () => {
   function setupMocksForTheDisplayService() {
     mockDisplayService = jasmine.createSpyObj('displayService', [
       'getDisplay',
-      'setTemporaryMessage'
+      'setTemporaryMessage',
+      'setTemporaryPriceMessage'
     ]);
     spyOn(nenaner.displayService, 'create').and.returnValue(mockDisplayService);
   }

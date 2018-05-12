@@ -14,7 +14,7 @@ nenaner.productService = {
         coinService.processPurchase(productValues[productName]);
         dispenser = productName;
       } else {
-        displayService.setTemporaryMessage(productName === 'Cola' ? 'PRICE $1.00' : 'PRICE $0.50');
+        displayService.setTemporaryPriceMessage(productValues[productName]);
       }
     }
 

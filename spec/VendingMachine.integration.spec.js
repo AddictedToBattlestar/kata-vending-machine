@@ -92,21 +92,18 @@ describe('Vending machine integration/acceptance tests', () => {
     });
   });
 
-  describe('Make change testing', () => {
-    when(
-      'When a product is selected that costs less than the amount of money in the machine',
-      () => {
-        beforeEach(() => {
-          subject.insertCoin('Quarter');
-          subject.insertCoin('Quarter');
-          subject.insertCoin('Quarter');
-          subject.candyButtonPressed();
-        });
+  describe('Make Change testing', () => {
+    when('a product is selected that costs less than the amount of money in the machine', () => {
+      beforeEach(() => {
+        subject.insertCoin('Quarter');
+        subject.insertCoin('Quarter');
+        subject.insertCoin('Quarter');
+        subject.candyButtonPressed();
+      });
 
-        it('places the remaining amount in the coin return', () => {
-          expect(subject.getCoinReturn()).toEqual(['Dime']);
-        });
-      }
-    );
+      it('places the remaining amount in the coin return', () => {
+        expect(subject.getCoinReturn()).toEqual(['Dime']);
+      });
+    });
   });
 });

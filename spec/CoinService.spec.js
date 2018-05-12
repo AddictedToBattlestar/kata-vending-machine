@@ -83,8 +83,8 @@ describe('Coin service', () => {
         subject.processPurchase(0.25);
       });
 
-      it('adjusts the amount inserted to 0.1', () => {
-        expect(subject.getAmountInserted()).toEqual(0.1);
+      it('places the remaining amount in the coind return', () => {
+        expect(subject.getReturnedCoin()).toEqual('Dime');
       });
     });
   });

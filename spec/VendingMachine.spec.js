@@ -4,7 +4,7 @@ describe('Vending machine', () => {
   let mockDisplayService;
   let mockProductService;
 
-  when('started', () => {
+  when('created', () => {
     beforeEach(() => {
       setupMocksForTheCoinService();
       mockCoinService.getAmountInserted.and.returnValue(0);

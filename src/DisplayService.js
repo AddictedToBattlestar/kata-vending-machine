@@ -4,8 +4,8 @@ nenaner.displayService = {
   create: getAmountInserted => {
     let temporaryMessage = '';
 
-    function getDisplayFormatForAmountInserted(amountInserted) {
-      return `$${Number(amountInserted).toFixed(2)}`;
+    function getDisplayFormat(amount) {
+      return `$${Number(amount).toFixed(2)}`;
     }
 
     function getDisplay() {
@@ -15,8 +15,7 @@ nenaner.displayService = {
         temporaryMessage = '';
       } else {
         const amountInserted = getAmountInserted();
-        messageToDisplay =
-          amountInserted === 0 ? 'INSERT COIN' : getDisplayFormatForAmountInserted(amountInserted);
+        messageToDisplay = amountInserted === 0 ? 'INSERT COIN' : getDisplayFormat(amountInserted);
       }
       return messageToDisplay;
     }
@@ -25,9 +24,14 @@ nenaner.displayService = {
       temporaryMessage = desiredTemporaryMessage;
     }
 
+    function setTemporaryPriceMessage(priceToDisplay) {
+      temporaryMessage = `PRICE ${getDisplayFormat(priceToDisplay)}`;
+    }
+
     return {
       getDisplay,
-      setTemporaryMessage
+      setTemporaryMessage,
+      setTemporaryPriceMessage
     };
   }
 };

@@ -30,6 +30,7 @@ nenaner.coinService = {
         returnedCoins.push('Dime');
       }
       if (amountInserted % 10 === 5) returnedCoins.push('Nickel');
+      amountInserted = 0;
     }
 
     return {

@@ -38,7 +38,7 @@ describe('Vending machine integration/acceptance tests', () => {
       });
 
       it('returns the invalid coin in the coin return', () => {
-        expect(subject.getCoinReturn()).toEqual('Penny');
+        expect(subject.getCoinReturn()).toEqual(['Penny']);
       });
     });
   });

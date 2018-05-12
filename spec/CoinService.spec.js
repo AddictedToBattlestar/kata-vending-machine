@@ -11,7 +11,7 @@ describe('Coin service', () => {
     });
 
     it('has an empty coin return', () => {
-      expect(subject.getReturnedCoin()).not.toBeDefined();
+      expect(subject.getReturnedCoin()).toEqual([]);
     });
 
     when('a Nickel is inserted', () => {
@@ -70,7 +70,7 @@ describe('Coin service', () => {
       });
 
       it('returns the invalid coin in the coin return', () => {
-        expect(subject.getReturnedCoin()).toEqual('Penny');
+        expect(subject.getReturnedCoin()).toEqual(['Penny']);
       });
     });
 
@@ -81,8 +81,8 @@ describe('Coin service', () => {
         subject.processPurchase(0.25);
       });
 
-      it('places the remaining amount in the coind return', () => {
-        expect(subject.getReturnedCoin()).toEqual('Dime');
+      it('places a Dime in the coin return', () => {
+        expect(subject.getReturnedCoin()).toEqual(['Dime']);
       });
     });
 
@@ -93,8 +93,21 @@ describe('Coin service', () => {
         subject.processPurchase(0.3);
       });
 
-      it('places the remaining amount in the coind return', () => {
-        expect(subject.getReturnedCoin()).toEqual('Nickel');
+      it('places a Nickel in the coin return', () => {
+        expect(subject.getReturnedCoin()).toEqual(['Nickel']);
+      });
+    });
+
+    when('a purchase of 0.55 is made where 0.75 is inserted', () => {
+      beforeEach(() => {
+        subject.insertCoin('Quarter');
+        subject.insertCoin('Quarter');
+        subject.insertCoin('Quarter');
+        subject.processPurchase(0.55);
+      });
+
+      it('places two Dimes in the coin return', () => {
+        expect(subject.getReturnedCoin()).toEqual(['Dime', 'Dime']);
       });
     });
   });

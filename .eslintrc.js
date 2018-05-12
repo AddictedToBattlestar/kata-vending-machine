@@ -14,7 +14,8 @@ module.exports = {
     'no-use-before-define': 'warn',
     'no-undef': 'warn',
     'arrow-parens': 'off',
-    'no-use-before-define': 'off'
+    'no-use-before-define': 'off',
+    'no-plusplus': 'off'
   },
   extends: 'airbnb-base'
 };

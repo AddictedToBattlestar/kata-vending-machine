@@ -44,43 +44,14 @@ describe('Vending machine integration/acceptance tests', () => {
   });
 
   describe('Select Product testing', () => {
-    when('the Cola button is selected with five Quarters inserted', () => {
-      beforeEach(() => {
-        subject.insertCoin('Quarter');
-        subject.insertCoin('Quarter');
-        subject.insertCoin('Quarter');
-        subject.insertCoin('Quarter');
-        subject.insertCoin('Quarter');
-        subject.colaButtonPressed();
-      });
-
-      it('dispenses a Cola', () => {
-        expect(subject.getDispenser()).toEqual('Cola');
-      });
-
-      it('displays the message "THANK YOU"', () => {
-        expect(subject.getDisplay()).toEqual('THANK YOU');
-      });
-
-      when('rechecking the display', () => {
-        beforeEach(() => {
-          subject.getDisplay();
-        });
-
-        it('the machine displays "$0.25"', () => {
-          expect(subject.getDisplay()).toEqual('$0.25');
-        });
-      });
-    });
-
-    when('the Chips button is selected with two Quarters inserted', () => {
+    when('the Chips button is pressed and enough money has been inserted', () => {
       beforeEach(() => {
         subject.insertCoin('Quarter');
         subject.insertCoin('Quarter');
         subject.chipsButtonPressed();
       });
 
-      it('dispenses a Chips', () => {
+      it('dispenses Chips', () => {
         expect(subject.getDispenser()).toEqual('Chips');
       });
 
@@ -99,17 +70,24 @@ describe('Vending machine integration/acceptance tests', () => {
       });
     });
 
-    when('the Candy button is selected with no money inserted', () => {
+    when('the Candy button is pressed with not enough money inserted', () => {
       beforeEach(() => {
+        subject.insertCoin('Quarter');
         subject.candyButtonPressed();
-      });
-
-      it('has an empty dispenser', () => {
-        expect(subject.getDispenser()).not.toBeDefined();
       });
 
       it('displays the message "PRICE $0.65"', () => {
         expect(subject.getDisplay()).toEqual('PRICE $0.65');
+      });
+
+      when('rechecking the display', () => {
+        beforeEach(() => {
+          subject.getDisplay();
+        });
+
+        it('the machine displays "$0.25"', () => {
+          expect(subject.getDisplay()).toEqual('$0.25');
+        });
       });
     });
   });

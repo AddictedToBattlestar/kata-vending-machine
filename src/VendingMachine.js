@@ -13,12 +13,17 @@ nenaner.vendingMachine = () => {
     productService.productPurchaseRequest('Chips');
   }
 
+  function candyButtonPressed() {
+    productService.productPurchaseRequest('Candy');
+  }
+
   return {
     insertCoin: coinService.insertCoin,
     getDisplay: displayService.getDisplay,
     getCoinReturn: coinService.getReturnedCoin,
     colaButtonPressed,
     chipsButtonPressed,
+    candyButtonPressed,
     getDispenser: productService.getDispenser
   };
 };

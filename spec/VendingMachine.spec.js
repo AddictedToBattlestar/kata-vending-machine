@@ -50,6 +50,16 @@ describe('Vending machine', () => {
         expect(mockProductService.productPurchaseRequest).toHaveBeenCalledWith('Chips');
       });
     });
+
+    when('a Candy is selected', () => {
+      beforeEach(() => {
+        subject.candyButtonPressed();
+      });
+
+      it('makes a call to the productService for a Cola', () => {
+        expect(mockProductService.productPurchaseRequest).toHaveBeenCalledWith('Candy');
+      });
+    });
   });
 
   function setupMocksForTheCoinService() {

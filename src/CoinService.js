@@ -15,13 +15,13 @@ nenaner.coinService = {
       else returnedCoins.push(coinInserted);
     }
     function getAmountInserted() {
-      return amountInserted / 100;
+      return amountInserted;
     }
     function getReturnedCoin() {
       return returnedCoins;
     }
     function processPurchase(purchaseAmount) {
-      amountInserted -= Math.round(purchaseAmount * 100);
+      amountInserted -= purchaseAmount;
       if (amountInserted >= 0) returnAmountInserted();
     }
 

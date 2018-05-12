@@ -19,8 +19,8 @@ describe('Coin service', () => {
         subject.insertCoin('Nickel');
       });
 
-      it('has a total amount inserted of 0.05', () => {
-        expect(subject.getAmountInserted()).toEqual(0.05);
+      it('has a total amount inserted of 5', () => {
+        expect(subject.getAmountInserted()).toEqual(5);
       });
     });
 
@@ -29,8 +29,8 @@ describe('Coin service', () => {
         subject.insertCoin('Dime');
       });
 
-      it('has a total amount inserted of 0.1', () => {
-        expect(subject.getAmountInserted()).toEqual(0.1);
+      it('has a total amount inserted of 10', () => {
+        expect(subject.getAmountInserted()).toEqual(10);
       });
     });
 
@@ -39,8 +39,8 @@ describe('Coin service', () => {
         subject.insertCoin('Quarter');
       });
 
-      it('has a total amount inserted of 0.25', () => {
-        expect(subject.getAmountInserted()).toEqual(0.25);
+      it('has a total amount inserted of 25', () => {
+        expect(subject.getAmountInserted()).toEqual(25);
       });
     });
 
@@ -55,8 +55,8 @@ describe('Coin service', () => {
         subject.insertCoin('Quarter');
       });
 
-      it('has a total amount inserted of 0.9', () => {
-        expect(subject.getAmountInserted()).toEqual(0.9);
+      it('has a total amount inserted of 90', () => {
+        expect(subject.getAmountInserted()).toEqual(90);
       });
     });
 
@@ -74,11 +74,11 @@ describe('Coin service', () => {
       });
     });
 
-    when('a purchase of 0.25 is made where 0.35 is inserted', () => {
+    when('a purchase of 25 is made where 35 is inserted', () => {
       beforeEach(() => {
         subject.insertCoin('Dime');
         subject.insertCoin('Quarter');
-        subject.processPurchase(0.25);
+        subject.processPurchase(25);
       });
 
       it('places a Dime in the coin return', () => {
@@ -90,11 +90,11 @@ describe('Coin service', () => {
       });
     });
 
-    when('a purchase of 0.30 is made where 0.35 is inserted', () => {
+    when('a purchase of 30 is made where 35 is inserted', () => {
       beforeEach(() => {
         subject.insertCoin('Dime');
         subject.insertCoin('Quarter');
-        subject.processPurchase(0.3);
+        subject.processPurchase(30);
       });
 
       it('places a Nickel in the coin return', () => {
@@ -106,12 +106,12 @@ describe('Coin service', () => {
       });
     });
 
-    when('a purchase of 0.55 is made where 0.75 is inserted', () => {
+    when('a purchase of 55 is made where 75 is inserted', () => {
       beforeEach(() => {
         subject.insertCoin('Quarter');
         subject.insertCoin('Quarter');
         subject.insertCoin('Quarter');
-        subject.processPurchase(0.55);
+        subject.processPurchase(55);
       });
 
       it('places two Dimes in the coin return', () => {
@@ -123,7 +123,7 @@ describe('Coin service', () => {
       });
     });
 
-    when('a purchase of 0.50 is made where an excessive amount of coins are inserted', () => {
+    when('a purchase of 50 is made where an excessive amount of coins are inserted', () => {
       beforeEach(() => {
         subject.insertCoin('Quarter');
         subject.insertCoin('Quarter');
@@ -134,7 +134,7 @@ describe('Coin service', () => {
         subject.insertCoin('Nickel');
         subject.insertCoin('Dime');
         subject.insertCoin('Nickel');
-        subject.processPurchase(0.5);
+        subject.processPurchase(50);
       });
 
       it('places the remaining amount in the coin return', () => {

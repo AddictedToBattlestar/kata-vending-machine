@@ -21,7 +21,7 @@ describe('Product service', () => {
       });
 
       it('displays the temporary message "PRICE $1.00"', () => {
-        expect(mockDisplayService.setTemporaryPriceMessage).toHaveBeenCalledWith(1);
+        expect(mockDisplayService.setTemporaryPriceMessage).toHaveBeenCalledWith(100);
       });
     });
 
@@ -31,7 +31,7 @@ describe('Product service', () => {
       });
 
       it('displays the temporary message "PRICE $0.50"', () => {
-        expect(mockDisplayService.setTemporaryPriceMessage).toHaveBeenCalledWith(0.5);
+        expect(mockDisplayService.setTemporaryPriceMessage).toHaveBeenCalledWith(50);
       });
     });
 
@@ -41,13 +41,13 @@ describe('Product service', () => {
       });
 
       it('displays the temporary message "PRICE $0.65"', () => {
-        expect(mockDisplayService.setTemporaryPriceMessage).toHaveBeenCalledWith(0.65);
+        expect(mockDisplayService.setTemporaryPriceMessage).toHaveBeenCalledWith(65);
       });
     });
 
     when('the button for Cola is pressed and there are enough coins inserted', () => {
       beforeEach(() => {
-        mockCoinService.getAmountInserted.and.returnValue(1);
+        mockCoinService.getAmountInserted.and.returnValue(100);
         subject.productPurchaseRequest('Cola');
       });
 
@@ -60,13 +60,13 @@ describe('Product service', () => {
       });
 
       it('has reduced the amount inserted for the cost of the Cola', () => {
-        expect(mockCoinService.processPurchase).toHaveBeenCalledWith(1);
+        expect(mockCoinService.processPurchase).toHaveBeenCalledWith(100);
       });
     });
 
     when('the button for Chips is pressed and there are enough coins inserted', () => {
       beforeEach(() => {
-        mockCoinService.getAmountInserted.and.returnValue(1);
+        mockCoinService.getAmountInserted.and.returnValue(100);
         subject.productPurchaseRequest('Chips');
       });
 
@@ -79,13 +79,13 @@ describe('Product service', () => {
       });
 
       it('has reduced the amount inserted for the cost of the Cola', () => {
-        expect(mockCoinService.processPurchase).toHaveBeenCalledWith(0.5);
+        expect(mockCoinService.processPurchase).toHaveBeenCalledWith(50);
       });
     });
 
     when('the button for Cola is pressed and there are too many coins inserted', () => {
       beforeEach(() => {
-        mockCoinService.getAmountInserted.and.returnValue(1.25);
+        mockCoinService.getAmountInserted.and.returnValue(125);
         subject.productPurchaseRequest('Cola');
       });
 
@@ -98,7 +98,7 @@ describe('Product service', () => {
       });
 
       it('has reduced the amount inserted for the cost of the Cola', () => {
-        expect(mockCoinService.processPurchase).toHaveBeenCalledWith(1);
+        expect(mockCoinService.processPurchase).toHaveBeenCalledWith(100);
       });
     });
   });

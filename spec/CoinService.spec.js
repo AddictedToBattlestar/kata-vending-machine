@@ -137,7 +137,7 @@ describe('Coin service', () => {
         subject.processPurchase(0.5);
       });
 
-      it('places two Dimes in the coin return', () => {
+      it('places the remaining amount in the coin return', () => {
         expect(subject.getReturnedCoin()).toEqual([
           'Quarter',
           'Quarter',

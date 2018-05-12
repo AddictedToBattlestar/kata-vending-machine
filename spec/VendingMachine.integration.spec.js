@@ -103,8 +103,8 @@ describe('Vending machine integration/acceptance tests', () => {
           subject.candyButtonPressed();
         });
 
-        xit('places the remaining amount in the coin return', () => {
-          expect(subject.getCoinReturn()).toEqual('Dime');
+        it('places the remaining amount in the coin return', () => {
+          expect(subject.getCoinReturn()).toEqual(['Dime']);
         });
       }
     );

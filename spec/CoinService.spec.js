@@ -11,7 +11,7 @@ describe('Coin service', () => {
     });
 
     it('has an empty coin return', () => {
-      expect(subject.getReturnedCoin()).not.toBeDefined();
+      expect(subject.getReturnedCoin()).toEqual([]);
     });
 
     when('a Nickel is inserted', () => {
@@ -19,8 +19,8 @@ describe('Coin service', () => {
         subject.insertCoin('Nickel');
       });
 
-      it('has a total amount inserted of 0.05', () => {
-        expect(subject.getAmountInserted()).toEqual(0.05);
+      it('has a total amount inserted of 5', () => {
+        expect(subject.getAmountInserted()).toEqual(5);
       });
     });
 
@@ -29,8 +29,8 @@ describe('Coin service', () => {
         subject.insertCoin('Dime');
       });
 
-      it('has a total amount inserted of 0.1', () => {
-        expect(subject.getAmountInserted()).toEqual(0.1);
+      it('has a total amount inserted of 10', () => {
+        expect(subject.getAmountInserted()).toEqual(10);
       });
     });
 
@@ -39,8 +39,8 @@ describe('Coin service', () => {
         subject.insertCoin('Quarter');
       });
 
-      it('has a total amount inserted of 0.25', () => {
-        expect(subject.getAmountInserted()).toEqual(0.25);
+      it('has a total amount inserted of 25', () => {
+        expect(subject.getAmountInserted()).toEqual(25);
       });
     });
 
@@ -55,8 +55,8 @@ describe('Coin service', () => {
         subject.insertCoin('Quarter');
       });
 
-      it('has a total amount inserted of 0.9', () => {
-        expect(subject.getAmountInserted()).toEqual(0.9);
+      it('has a total amount inserted of 90', () => {
+        expect(subject.getAmountInserted()).toEqual(90);
       });
     });
 
@@ -70,21 +70,85 @@ describe('Coin service', () => {
       });
 
       it('returns the invalid coin in the coin return', () => {
-        expect(subject.getReturnedCoin()).toEqual('Penny');
+        expect(subject.getReturnedCoin()).toEqual(['Penny']);
       });
     });
 
-    when('a purchase of 0.25 is made where 0.35 is inserted', () => {
-      // I interestingly had to adjust how the total amount was stored to whole numbers
-      // to avoid issues here (Expected 0.09999999999999998 to equal 0.1)
+    when('a purchase of 25 is made where 35 is inserted', () => {
       beforeEach(() => {
         subject.insertCoin('Dime');
         subject.insertCoin('Quarter');
-        subject.processPurchase(0.25);
+        subject.processPurchase(25);
       });
 
-      it('adjusts the amount inserted to 0.1', () => {
-        expect(subject.getAmountInserted()).toEqual(0.1);
+      it('places a Dime in the coin return', () => {
+        expect(subject.getReturnedCoin()).toEqual(['Dime']);
+      });
+
+      it('resets the amount inserted back to 0', () => {
+        expect(subject.getAmountInserted()).toEqual(0);
+      });
+    });
+
+    when('a purchase of 30 is made where 35 is inserted', () => {
+      beforeEach(() => {
+        subject.insertCoin('Dime');
+        subject.insertCoin('Quarter');
+        subject.processPurchase(30);
+      });
+
+      it('places a Nickel in the coin return', () => {
+        expect(subject.getReturnedCoin()).toEqual(['Nickel']);
+      });
+
+      it('resets the amount inserted back to 0', () => {
+        expect(subject.getAmountInserted()).toEqual(0);
+      });
+    });
+
+    when('a purchase of 55 is made where 75 is inserted', () => {
+      beforeEach(() => {
+        subject.insertCoin('Quarter');
+        subject.insertCoin('Quarter');
+        subject.insertCoin('Quarter');
+        subject.processPurchase(55);
+      });
+
+      it('places two Dimes in the coin return', () => {
+        expect(subject.getReturnedCoin()).toEqual(['Dime', 'Dime']);
+      });
+
+      it('resets the amount inserted back to 0', () => {
+        expect(subject.getAmountInserted()).toEqual(0);
+      });
+    });
+
+    when('a purchase of 50 is made where an excessive amount of coins are inserted', () => {
+      beforeEach(() => {
+        subject.insertCoin('Quarter');
+        subject.insertCoin('Quarter');
+        subject.insertCoin('Quarter');
+        subject.insertCoin('Quarter');
+        subject.insertCoin('Dime');
+        subject.insertCoin('Dime');
+        subject.insertCoin('Nickel');
+        subject.insertCoin('Dime');
+        subject.insertCoin('Nickel');
+        subject.processPurchase(50);
+      });
+
+      it('places the remaining amount in the coin return', () => {
+        expect(subject.getReturnedCoin()).toEqual([
+          'Quarter',
+          'Quarter',
+          'Quarter',
+          'Dime',
+          'Nickel'
+        ]);
+      });
+
+      it('resets the amount inserted back to 0', () => {
+        expect(subject.getAmountInserted()).toEqual(0);
       });
     });
   });

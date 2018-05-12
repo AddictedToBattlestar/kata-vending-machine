@@ -38,7 +38,7 @@ describe('Vending machine integration/acceptance tests', () => {
       });
 
       it('returns the invalid coin in the coin return', () => {
-        expect(subject.getCoinReturn()).toEqual('Penny');
+        expect(subject.getCoinReturn()).toEqual(['Penny']);
       });
     });
   });
@@ -88,6 +88,21 @@ describe('Vending machine integration/acceptance tests', () => {
         it('the machine displays "$0.25"', () => {
           expect(subject.getDisplay()).toEqual('$0.25');
         });
+      });
+    });
+  });
+
+  describe('Make Change testing', () => {
+    when('a product is selected that costs less than the amount of money in the machine', () => {
+      beforeEach(() => {
+        subject.insertCoin('Quarter');
+        subject.insertCoin('Quarter');
+        subject.insertCoin('Quarter');
+        subject.candyButtonPressed();
+      });
+
+      it('places the remaining amount in the coin return', () => {
+        expect(subject.getCoinReturn()).toEqual(['Dime']);
       });
     });
   });

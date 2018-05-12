@@ -16,7 +16,7 @@ describe('Display service', () => {
 
     when('coins are inserted', () => {
       beforeEach(() => {
-        mockGetAmountInserted.and.returnValue(1.5);
+        mockGetAmountInserted.and.returnValue(150);
       });
 
       it('displays the amount with a dollar sign and 2 decimal places', () => {
@@ -46,7 +46,7 @@ describe('Display service', () => {
 
     when('a temporary price message is asked to be displayed', () => {
       beforeEach(() => {
-        subject.setTemporaryPriceMessage(0.5);
+        subject.setTemporaryPriceMessage(50);
       });
 
       it('displays the temporary message', () => {

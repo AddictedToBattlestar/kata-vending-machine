@@ -4,8 +4,8 @@ nenaner.displayService = {
   create: getAmountInserted => {
     let temporaryMessage = '';
 
-    function getDisplayFormat(amount) {
-      return `$${Number(amount).toFixed(2)}`;
+    function getDisplayFormat(amountInCents) {
+      return `$${Number(amountInCents / 100).toFixed(2)}`;
     }
 
     function getDisplay() {

@@ -3,9 +3,9 @@ var nenaner = nenaner || {};
 nenaner.productService = {
   create: (coinService, displayService) => {
     const productValues = {
-      Cola: 1,
-      Chips: 0.5,
-      Candy: 0.65
+      Cola: 100,
+      Chips: 50,
+      Candy: 65
     };
     let dispenser;
 

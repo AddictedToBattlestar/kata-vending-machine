@@ -7,20 +7,22 @@ nenaner.productService = {
       Chips: 50,
       Candy: 65
     };
-    let dispenser;
+    let itemToDispense = null;
 
     function productPurchaseRequest(productName) {
       if (coinService.getAmountInserted() >= productValues[productName]) {
         displayService.setTemporaryMessage('THANK YOU');
         coinService.processPurchase(productValues[productName]);
-        dispenser = productName;
+        itemToDispense = productName;
       } else {
         displayService.setTemporaryPriceMessage(productValues[productName]);
       }
     }
 
     function getDispenser() {
-      return dispenser;
+      const itemInDispenser = itemToDispense;
+      itemToDispense = null;
+      return itemInDispenser;
     }
 
     return {

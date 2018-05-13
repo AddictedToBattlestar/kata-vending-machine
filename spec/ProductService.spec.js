@@ -12,7 +12,7 @@ describe('Product service', () => {
     });
 
     it('has an empty dispenser', () => {
-      expect(subject.getDispenser()).not.toBeDefined();
+      expect(subject.getDispenser()).toBeNull();
     });
 
     when('the button for Cola is pressed', () => {
@@ -99,6 +99,18 @@ describe('Product service', () => {
 
       it('has reduced the amount inserted for the cost of the Cola', () => {
         expect(mockCoinService.processPurchase).toHaveBeenCalledWith(100);
+      });
+    });
+
+    when('rechecking the dispenser after already retrieving your Cola', () => {
+      beforeEach(() => {
+        mockCoinService.getAmountInserted.and.returnValue(125);
+        subject.productPurchaseRequest('Cola');
+        subject.getDispenser();
+      });
+
+      it('has an empty dispenser', () => {
+        expect(subject.getDispenser()).toBeNull();
       });
     });
   });

@@ -151,5 +151,18 @@ describe('Coin service', () => {
         expect(subject.getAmountInserted()).toEqual(0);
       });
     });
+
+    when('rechecking the coin return after already retrieving your coins', () => {
+      beforeEach(() => {
+        subject.insertCoin('Dime');
+        subject.insertCoin('Quarter');
+        subject.processPurchase(25);
+        subject.getReturnedCoin();
+      });
+
+      it('has an empty coin return', () => {
+        expect(subject.getReturnedCoin()).toEqual([]);
+      });
+    });
   });
 });

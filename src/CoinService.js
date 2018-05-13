@@ -8,17 +8,19 @@ nenaner.coinService = {
       Quarter: 25
     };
     let amountInserted = 0;
-    const returnedCoins = [];
+    let coinsToReturn = [];
 
     function insertCoin(coinInserted) {
       if (coinValues[coinInserted]) amountInserted += coinValues[coinInserted];
-      else returnedCoins.push(coinInserted);
+      else coinsToReturn.push(coinInserted);
     }
     function getAmountInserted() {
       return amountInserted;
     }
     function getReturnedCoin() {
-      return returnedCoins;
+      const coinsInCoinReturn = coinsToReturn.slice(0);
+      coinsToReturn = [];
+      return coinsInCoinReturn;
     }
     function processPurchase(purchaseAmount) {
       amountInserted -= purchaseAmount;
@@ -34,7 +36,7 @@ nenaner.coinService = {
     function returnCoins(coinToReturn) {
       const numberOfCoinsToReturn = Math.floor(amountInserted / coinValues[coinToReturn]);
       for (let x = 0; x < numberOfCoinsToReturn; x++) {
-        returnedCoins.push(coinToReturn);
+        coinsToReturn.push(coinToReturn);
         amountInserted -= coinValues[coinToReturn];
       }
     }
